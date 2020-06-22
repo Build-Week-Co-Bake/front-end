@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom'
 import Login from './components/login'
 import Register from './components/register'
 import UserDash from './components/userDash'
+import IssueEdit from './components/issueEdit'
 import "./App.css";
 
 const dummyIssues = [{
@@ -12,7 +13,7 @@ const dummyIssues = [{
   city: 'Cincinnati',
   hoa: '',
   description: 'I found a pothole on Whatever Avenue and Thing Place',
-  photo: 'https://images.unsplash.com/photo-1515162816999-a0c47dc192f7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80',
+  photo: ['https://images.unsplash.com/photo-1515162816999-a0c47dc192f7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80'],
   upvotes: '2',
   createdAt: '6/22/2020',
 },
@@ -23,12 +24,23 @@ const dummyIssues = [{
   city: 'Cincinnati',
   hoa: '',
   description: 'I found a pothole on Main and Percy Street',
-  photo: 'https://images.unsplash.com/photo-1515162816999-a0c47dc192f7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80',
+  photo: ['https://images.unsplash.com/photo-1515162816999-a0c47dc192f7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80'],
   upvotes: '3',
   createdAt: '6/21/2020',
 }]
-
+const defaultIssueValues = {
+  id: '',
+  userId: '',
+  title: '',
+  city: '',
+  hoa: '',
+  description: '',
+  photo: [''],
+  upvotes: '',
+  createdAt: '',
+}
 const editButtonState = false
+const loggedIn = true
 function App() {
 
   return (
@@ -37,23 +49,23 @@ function App() {
       <div className="App">
         <h1>Co-Make</h1>
         <nav>
-          <NavLink to='/login'>Login</NavLink>
-          <NavLink to='/register'>Register</NavLink>
-          <NavLink to='/userDash'>NavLink</NavLink>
+          <NavLink style={!loggedIn ? {}: {display:'none'}} to='/login'>Login</NavLink>
+          <NavLink style={!loggedIn ? {}: {display:'none'}} to='/register'>Register</NavLink>
+          <NavLink style={loggedIn ? {}: {display:'none'}} to='/userDash'>Dashboard</NavLink>
         </nav>
       </div>
       <Route path={'/login'}>
         <Login />
       </Route>
       <Route path={'/register'}>
-      <Register />
-
+        <Register />
       </Route>
       <Route path={'/userDash'}>
-      <UserDash editButtonState={editButtonState} issueData={dummyIssues}/>
-
+        <UserDash editButtonState={editButtonState} issueData={dummyIssues}/>
       </Route>
-      
+      <Route path={'/issueEdit/:id'}>
+        <IssueEdit />
+      </Route>
     </Router>
 
   );
