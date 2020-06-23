@@ -3,8 +3,10 @@ import { useForm } from "react-hook-form";
 import { api } from "../utils/api";
 import { useSetRecoilState } from "recoil";
 import { userState } from "../recoil/atoms";
+import { useHistory } from "react-router-dom";
 
 function Login(props) {
+  const history = useHistory();
   const setUser = useSetRecoilState(userState);
   const { register, handleSubmit, errors } = useForm();
   const onSubmit = (data) => {
@@ -14,11 +16,12 @@ function Login(props) {
         console.log(res.data);
         setUser((initial) => {
           return {
-            user: res.data,
+            user: res.data.data,
             loggedIn: true,
           };
         });
         localStorage.setItem("token", res.data.token);
+        history.push("/userDash");
       })
       .catch((err) => console.log(err));
   };
