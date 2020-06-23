@@ -4,50 +4,14 @@ import Login from "./components/login";
 import Register from "./components/register";
 import UserDash from "./components/userDash";
 import IssueEdit from "./components/issueEdit";
+import CreateIssue from "./components/createIssue"
 import { ProtectedRoute } from "./utils/ProtectedRoute";
 import "./App.css";
 import { useRecoilValue } from "recoil";
 import { userState } from "./recoil/atoms";
 
-const dummyIssues = [
-  {
-    id: "0",
-    userId: "1",
-    title: "Pothole on Whatever and Thing",
-    city: "Cincinnati",
-    hoa: "",
-    description: "I found a pothole on Whatever Avenue and Thing Place",
-    photo: [
-      "https://images.unsplash.com/photo-1515162816999-a0c47dc192f7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80",
-    ],
-    upvotes: "2",
-    createdAt: "6/22/2020",
-  },
-  {
-    id: "1",
-    userId: "1",
-    title: "Pothole on Main and Percy",
-    city: "Cincinnati",
-    hoa: "",
-    description: "I found a pothole on Main and Percy Street",
-    photo: [
-      "https://images.unsplash.com/photo-1515162816999-a0c47dc192f7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80",
-    ],
-    upvotes: "3",
-    createdAt: "6/21/2020",
-  },
-];
-const defaultIssueValues = [{
-  id: "",
-  userId: "",
-  title: "",
-  city: "",
-  hoa: "",
-  description: "",
-  photo: [""],
-  upvotes: "",
-  createdAt: "",
-},
+
+const defaultIssueValues = [
 {
   id: "",
   userId: "",
@@ -63,7 +27,7 @@ const editButtonState = false;
 // const loggedIn = true;
 function App() {
   const loggedIn = useRecoilValue(userState).loggedIn;
-  const [ issues, setIssues ] = useState(dummyIssues)
+  const [ issues, setIssues ] = useState(defaultIssueValues)
 
   const getIssues = data => [
     setIssues(data)
@@ -83,6 +47,9 @@ function App() {
           <NavLink style={loggedIn ? {} : { display: "none" }} to="/userDash">
             Dashboard
           </NavLink>
+          <NavLink style={loggedIn ? {} : { display: "none" }} to="/createIssue">
+            Post New Issue
+          </NavLink>
         </nav>
       </div>
       <Route path={"/login"}>
@@ -93,6 +60,9 @@ function App() {
       </Route>
       <ProtectedRoute path={"/userDash"}>
         <UserDash editButtonState={editButtonState} issues={issues} getIssues={getIssues}/>
+      </ProtectedRoute>
+      <ProtectedRoute path={"/createIssue"}>
+        <CreateIssue />
       </ProtectedRoute>
       <ProtectedRoute path={"/issueEdit/:id"}>
         <IssueEdit />
