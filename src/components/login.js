@@ -1,14 +1,23 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { api } from "../utils/api";
+import { useSetRecoilState } from "recoil";
+import { userState } from "../recoil/atoms";
 
 function Login(props) {
+  const setUser = useSetRecoilState(userState);
   const { register, handleSubmit, errors } = useForm();
   const onSubmit = (data) => {
     api()
       .post("api/login", data)
       .then((res) => {
         console.log(res.data);
+        setUser((initial) => {
+          return {
+            user: res.data,
+            loggedIn: true,
+          };
+        });
         localStorage.setItem("token", res.data.token);
       })
       .catch((err) => console.log(err));

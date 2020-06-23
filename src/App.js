@@ -6,6 +6,8 @@ import UserDash from "./components/userDash";
 import IssueEdit from "./components/issueEdit";
 import { ProtectedRoute } from "./utils/ProtectedRoute";
 import "./App.css";
+import { useRecoilValue } from "recoil";
+import { userState } from "./recoil/atoms";
 
 const dummyIssues = [
   {
@@ -47,8 +49,9 @@ const defaultIssueValues = {
   createdAt: "",
 };
 const editButtonState = false;
-const loggedIn = true;
+// const loggedIn = true;
 function App() {
+  const loggedIn = useRecoilValue(userState).loggedIn;
   return (
     <Router>
       <div className="App">
