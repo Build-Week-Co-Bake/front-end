@@ -1,6 +1,6 @@
 [build]
   publist = "./build"
-  command = "yarn foo"
+  command = "npm run foo"
 
 [[redirects]]
   from = "/*"
