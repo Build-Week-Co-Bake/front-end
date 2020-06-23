@@ -1,7 +1,7 @@
 [build]
   publist = "./build"
-  command = "yarn build"
-  
+  command = "yarn foo"
+
 [[redirects]]
   from = "/*"
   to = "/index.html"
