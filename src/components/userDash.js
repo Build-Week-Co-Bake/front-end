@@ -50,3 +50,4 @@ function UserDash(props) {
     );
 };
 
+export default UserDash
