@@ -27,7 +27,7 @@ function IssueEdit(props) {
         api()
         .get(`https://lambda-co-make.herokuapp.com/issues/${id}:`)
         .then((res) => {
-          console.log('res', res);
+        //   console.log('res', res);
           setIssue(res.data.data)
         })
         .catch((err) => console.log(err));

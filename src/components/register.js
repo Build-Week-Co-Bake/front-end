@@ -10,7 +10,7 @@ function Register(props) {
     api()
       .post("api/register", data)
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         history.push("/login");
       })
       .catch((err) => console.log(err));

@@ -27,11 +27,11 @@ const editButtonState = false;
 // const loggedIn = true;
 function App() {
   const loggedIn = useRecoilValue(userState).loggedIn;
-  const [ issues, setIssues ] = useState(defaultIssueValues)
+  const [ issues, setIssues ] = useState(defaultIssueValues);
 
   const getIssues = data => [
     setIssues(data)
-  ]
+  ];
 
   return (
     <Router>
@@ -69,6 +69,6 @@ function App() {
       </ProtectedRoute>
     </Router>
   );
-}
+};
 
 export default App;
