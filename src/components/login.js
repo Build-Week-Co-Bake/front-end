@@ -6,23 +6,22 @@ import { useSetRecoilState } from "recoil";
 import { userState } from "../recoil/atoms";
 
 function Login(props) {
+  const history = useHistory();
   const setUser = useSetRecoilState(userState);
   const { register, handleSubmit, errors } = useForm();
-  const history = useHistory();
 
   const onSubmit = (data) => {
     api()
       .post("api/login", data)
       .then((res) => {
-        history.push("/userDash");
-        // console.log(res.data);
         setUser((initial) => {
           return {
-            user: res.data,
+            user: res.data.data,
             loggedIn: true,
           };
         });
         localStorage.setItem("token", res.data.token);
+        history.push("/userDash");
       })
       .catch((err) => console.log(err));
   };

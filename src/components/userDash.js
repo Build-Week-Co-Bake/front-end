@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import Issue from './issue';
 import { api } from "../utils/api";
 import { useForm } from 'react-hook-form';
+import { useRecoilValue } from "recoil";
+import { userState } from "../recoil/atoms";
 
 
 function UserDash(props) {
@@ -9,6 +11,8 @@ function UserDash(props) {
     const { register, handleSubmit } = useForm();
     const [ issueFilter, setIssueFilter ] = useState('issues');
     const [ userId, setUserId ] = useState(`0`);
+    const user = useRecoilValue(userState).user;
+    console.log(user);
     
     const onSearch = (data) => {
         setIssueFilter(`issues/search?city=${data.search}`)
@@ -46,4 +50,3 @@ function UserDash(props) {
     );
 };
 
-export default UserDash;
