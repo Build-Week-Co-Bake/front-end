@@ -13,7 +13,6 @@ function Login(props) {
     api()
       .post("api/login", data)
       .then((res) => {
-        console.log(res.data);
         setUser((initial) => {
           return {
             user: res.data.data,
