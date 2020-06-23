@@ -4,6 +4,7 @@ import Login from "./components/login";
 import Register from "./components/register";
 import UserDash from "./components/userDash";
 import IssueEdit from "./components/issueEdit";
+import { ProtectedRoute } from "./utils/ProtectedRoute";
 import "./App.css";
 
 const dummyIssues = [
@@ -70,12 +71,12 @@ function App() {
       <Route path={"/register"}>
         <Register />
       </Route>
-      <Route path={"/userDash"}>
+      <ProtectedRoute path={"/userDash"}>
         <UserDash editButtonState={editButtonState} issueData={dummyIssues} />
-      </Route>
-      <Route path={"/issueEdit/:id"}>
+      </ProtectedRoute>
+      <ProtectedRoute path={"/issueEdit/:id"}>
         <IssueEdit />
-      </Route>
+      </ProtectedRoute>
     </Router>
   );
 }

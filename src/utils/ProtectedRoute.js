@@ -2,15 +2,15 @@ import React from "react";
 import { Route, Redirect } from "react-router-dom";
 
 export function ProtectedRoute(props) {
-  const { component: Component, ...rest } = props;
+  const { children, ...rest } = props;
   return (
     <Route
       {...rest}
-      render={(renderprops) => {
+      render={({ location }) => {
         return localStorage.getItem("token") ? (
-          <Component {...renderprops} />
+          children
         ) : (
-          <Redirect to="/login" />
+          <Redirect to={{ pathname: "/login", state: { from: location } }} />
         );
       }}
     />
