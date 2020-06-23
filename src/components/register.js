@@ -55,7 +55,7 @@ function Register(props) {
         )}
         <label>What name would you like to display to your neighbors?</label>
         <input name="name" ref={register} />
-        <input type="submit" />
+        <input type="submit"/>
       </form>
     </div>
   );

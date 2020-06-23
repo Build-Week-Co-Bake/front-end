@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
 import Login from "./components/login";
 import Register from "./components/register";
@@ -37,7 +37,7 @@ const dummyIssues = [
     createdAt: "6/21/2020",
   },
 ];
-const defaultIssueValues = {
+const defaultIssueValues = [{
   id: "",
   userId: "",
   title: "",
@@ -47,11 +47,28 @@ const defaultIssueValues = {
   photo: [""],
   upvotes: "",
   createdAt: "",
-};
+},
+{
+  id: "",
+  userId: "",
+  title: "",
+  city: "",
+  hoa: "",
+  description: "",
+  photo: [""],
+  upvotes: "",
+  createdAt: "",
+}];
 const editButtonState = false;
 // const loggedIn = true;
 function App() {
   const loggedIn = useRecoilValue(userState).loggedIn;
+  const [ issues, setIssues ] = useState(dummyIssues)
+
+  const getIssues = data => [
+    setIssues(data)
+  ]
+
   return (
     <Router>
       <div className="App">
@@ -75,7 +92,7 @@ function App() {
         <Register />
       </Route>
       <ProtectedRoute path={"/userDash"}>
-        <UserDash editButtonState={editButtonState} issueData={dummyIssues} />
+        <UserDash editButtonState={editButtonState} issues={issues} getIssues={getIssues}/>
       </ProtectedRoute>
       <ProtectedRoute path={"/issueEdit/:id"}>
         <IssueEdit />
