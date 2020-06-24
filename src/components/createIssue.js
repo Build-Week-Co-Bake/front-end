@@ -56,7 +56,7 @@ function CreateIssue(props) {
                 <label>Add Photo:</label>
                 <input 
                 type='url'
-                name='photo'
+                name='image'
                 ref={register({
                     // pattern: /^[a-zA-Z0-9\-\.]+\.(com|org|net|mil|edu|COM|ORG|NET|MIL|EDU)$/
                 })}

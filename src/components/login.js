@@ -1,4 +1,5 @@
 import React from "react";
+import styled from "styled-components";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 import { api } from "../utils/api";
@@ -27,7 +28,7 @@ function Login(props) {
   };
 
   return (
-    <div>
+    <StyledLogin>
       <h2>Login</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
         <label>Email:</label>
@@ -50,10 +51,33 @@ function Login(props) {
           })}
         />
         {errors.password && <span>This field is required</span>}
-        <input type="submit" />
+        <input className='submit' type="submit" />
       </form>
-    </div>
+    </StyledLogin>
   );
 };
 
 export default Login;
+
+const StyledLogin = styled.div`
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        margin: 10% auto;
+        width: 40%;
+        padding: 3%;
+    h2{
+        font-size: 2rem;
+        margin: 2% 0;
+    }
+    form{
+        display: flex;
+        flex-direction: column;
+        input{
+            padding: 2%;
+            margin: 2% 0;
+        }
+        input.submit{
+            width: 30%;
+            margin: 2% auto;
+        }
+    }
+`

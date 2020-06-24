@@ -1,9 +1,9 @@
 import React, {useState} from "react";
 import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
-import { userState } from "./recoil/atoms";
-import { ProtectedRoute } from "./utils/ProtectedRoute";
 import { useRecoilValue } from "recoil";
 import styled from 'styled-components'
+import { userState } from "./recoil/atoms";
+import { ProtectedRoute } from "./utils/ProtectedRoute";
 import Login from "./components/login";
 import Register from "./components/register";
 import UserDash from "./components/userDash";
@@ -12,28 +12,45 @@ import CreateIssue from "./components/createIssue";
 import "./App.css";
 
 const Header = styled.div`
-  background-color: dimgray;
+  background-color: black;
   div{
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     max-width: 1200px;
     margin: 0 auto;
     color: white;
+    @media(max-width:500px){
+      justify-content: center;
+    }
     h1{
       font-size: 3rem;
+      padding: 1%;
+      
     }
     nav{
       width: 30%;
+      display: flex;
+      flex-direction: row;
+
+      @media(max-width:500px){
+            width: 80%;
+        }
       a{
+        display: flex;
+        align-content: center;
         padding: 10%;
         text-decoration: none;
-        justify-content: center;
       }
       a:visited{
         color: white;
       }
       a:link{
         color: white;
+      }
+      a:hover{
+        color: black;
+        background-color: white;
       }
     }
   }

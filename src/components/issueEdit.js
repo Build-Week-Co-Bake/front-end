@@ -25,7 +25,7 @@ function IssueEdit(props) {
 
     useEffect(() => {
         api()
-        .get(`https://lambda-co-make.herokuapp.com/issues/${id}:`)
+        .get(`/issues/${id}:`)
         .then((res) => {
         //   console.log('res', res);
           setIssue(res.data.data)

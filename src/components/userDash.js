@@ -16,43 +16,6 @@ function UserDash(props) {
     const user = useRecoilValue(userState).user;
     console.log(user);
     
-    const Cards = styled.div`
-        div.filters{
-            display: flex;
-            max-width: 1200px;
-            margin: 0 auto;
-            button{
-                padding: 1%;
-                font-size: 1rem;
-            }
-            form{
-                display: flex;
-                flex-wrap: wrap;
-                padding: 1%;
-                width: 100%;
-                label{
-                    font-size: 1rem;
-                    width: 100%;
-                    padding: 1%;
-                }
-                input{
-                    width: 60%;
-                    padding: 1%;
-                    margin: 1%;
-                }
-                input.submit{
-                    font-size: 1rem;
-                    padding: 1%;
-                    width: auto;
-                }
-            }
-        }
-        div.issues{
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-    `
 
     const onSearch = (data) => {
         setIssueFilter(`issues/search?city=${data.search}`)
@@ -60,7 +23,7 @@ function UserDash(props) {
 
     useEffect(() => {
         api()
-        .get(`https://lambda-co-make.herokuapp.com/${issueFilter}`)
+        .get(`${issueFilter}`)
         .then((res) => {
         //   console.log('Issues from the backend',res.data);
           getIssues(res.data.data)
@@ -92,3 +55,42 @@ function UserDash(props) {
 };
 
 export default UserDash
+
+const Cards = styled.div`
+    div.filters{
+        display: flex;
+        max-width: 1200px;
+        margin: 0 auto;
+        button{
+            margin: 1%;
+            padding: 1%;
+            font-size: 1rem;
+        }
+        form{
+            display: flex;
+            flex-wrap: wrap;
+            padding: 1%;
+            width: 100%;
+            label{
+                font-size: 1rem;
+                width: 100%;
+                padding: 1%;
+            }
+            input{
+                width: 60%;
+                padding: 1%;
+                margin: 1%;
+            }
+            input.submit{
+                font-size: 1rem;
+                padding: 1%;
+                width: auto;
+            }
+        }
+    }
+    div.issues{
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    
+`
