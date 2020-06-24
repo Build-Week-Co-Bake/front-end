@@ -12,19 +12,20 @@ function Login(props) {
   const { register, handleSubmit, errors } = useForm();
 
   const onSubmit = (data) => {
+    console.log('data', data);
     api()
-      .post("api/login", data)
-      .then((res) => {
+    .post("api/login", data)
+    .then((res) => {
         setUser((initial) => {
-          return {
+        return {
             user: res.data.data,
             loggedIn: true,
-          };
+        };
         });
         localStorage.setItem("token", res.data.token);
         history.push("/userDash");
-      })
-      .catch((err) => console.log(err));
+    })
+    .catch((err) => console.log(err));
   };
 
   return (

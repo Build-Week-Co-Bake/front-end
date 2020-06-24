@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from "styled-components";
 import { useForm } from 'react-hook-form';
 import { api } from '../utils/api';
 
@@ -15,7 +16,8 @@ function CreateIssue(props) {
     };
 
     return(
-        <div>
+        <StyledCreateIssue>
+            <h2>Create New Issue</h2>
             <form onSubmit={handleSubmit(postIssue)}>
                 <label>Title:</label>
                 <input
@@ -64,8 +66,31 @@ function CreateIssue(props) {
                 {errors.photo && <span>Please enter a valid image URL.</span>}
                 <input type='submit'/>
             </form>
-        </div>
+        </StyledCreateIssue>
     );
 };
 
 export default CreateIssue;
+
+const StyledCreateIssue = styled.div`
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin: 10% auto;
+    width: 40%;
+    padding: 3%;
+    h2{
+        font-size: 2rem;
+        margin: 2% 0;
+    }
+    form{
+    display: flex;
+    flex-direction: column;
+        input{
+            padding: 2%;
+            margin: 2% 0;
+        }
+        input.submit{
+            width: 30%;
+            margin: 2% auto;
+        }
+    }
+`
