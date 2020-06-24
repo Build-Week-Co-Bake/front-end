@@ -1,4 +1,5 @@
 import React from "react";
+import styled from "styled-components";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 import { api } from "../utils/api";
@@ -7,6 +8,7 @@ function Register(props) {
   const { register, handleSubmit, errors } = useForm();
   const history = useHistory();
   const onSubmit = (data) => {
+    // console.log(data)
     api()
       .post("api/register", data)
       .then((res) => {
@@ -17,7 +19,7 @@ function Register(props) {
   };
 
   return (
-    <div>
+    <StyledRegister>
       <h2>Register</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
         <label>Email:</label>
@@ -55,10 +57,33 @@ function Register(props) {
         )}
         <label>What name would you like to display to your neighbors?</label>
         <input name="name" ref={register} />
-        <input type="submit"/>
+        <input className='submit' type="submit"/>
       </form>
-    </div>
+    </StyledRegister>
   );
 }
 
 export default Register;
+
+const StyledRegister = styled.div`
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin: 10% auto;
+  width: 40%;
+  padding: 3%;
+  h2{
+      font-size: 2rem;
+      margin: 2% 0;
+  }
+  form{
+    display: flex;
+    flex-direction: column;
+    input{
+        padding: 2%;
+        margin: 2% 0;
+    }
+    input.submit{
+        width: 30%;
+        margin: 2% auto;
+    }
+  }
+`
