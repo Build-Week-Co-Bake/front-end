@@ -10,7 +10,7 @@ function Register(props) {
     api()
       .post("api/register", data)
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         history.push("/login");
       })
       .catch((err) => console.log(err));
@@ -55,7 +55,7 @@ function Register(props) {
         )}
         <label>What name would you like to display to your neighbors?</label>
         <input name="name" ref={register} />
-        <input type="submit" />
+        <input type="submit"/>
       </form>
     </div>
   );

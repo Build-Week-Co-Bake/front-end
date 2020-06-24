@@ -1,14 +1,15 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { useHistory } from "react-router-dom";
 import { api } from "../utils/api";
 import { useSetRecoilState } from "recoil";
 import { userState } from "../recoil/atoms";
-import { useHistory } from "react-router-dom";
 
 function Login(props) {
   const history = useHistory();
   const setUser = useSetRecoilState(userState);
   const { register, handleSubmit, errors } = useForm();
+
   const onSubmit = (data) => {
     api()
       .post("api/login", data)
@@ -53,6 +54,6 @@ function Login(props) {
       </form>
     </div>
   );
-}
+};
 
 export default Login;
