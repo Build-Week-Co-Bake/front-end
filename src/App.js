@@ -11,6 +11,70 @@ import IssueEdit from "./components/issueEdit";
 import CreateIssue from "./components/createIssue";
 import "./App.css";
 
+const defaultIssueValues = [
+  {
+    id: "",
+    userId: "",
+    title: "",
+    city: "",
+    hoa: "",
+    description: "",
+    photo: [""],
+    upvotes: "",
+    createdAt: "",
+  }];
+  const editButtonState = false;
+  // const loggedIn = true;
+  function App() {
+  const loggedIn = useRecoilValue(userState).loggedIn;
+  const [ issues, setIssues ] = useState(defaultIssueValues);
+  
+  const getIssues = data => [
+    setIssues(data)
+  ];
+  
+  return (
+    <Router>
+      <Header>
+        <div>
+          <h1>Co-Make</h1>
+          <nav>
+            <NavLink style={!loggedIn ? {} : { display: "none" }} to="/login">
+              Login
+            </NavLink>
+            <NavLink style={!loggedIn ? {} : { display: "none" }} to="/register">
+              Register
+            </NavLink>
+            <NavLink style={loggedIn ? {} : { display: "none" }} to="/userDash">
+              Dashboard
+            </NavLink>
+            <NavLink style={loggedIn ? {} : { display: "none" }} to="/createIssue">
+              Post New Issue
+            </NavLink>
+          </nav>
+        </div>
+      </Header>
+      <Route path={"/login"}>
+        <Login />
+      </Route>
+      <Route path={"/register"}>
+        <Register />
+      </Route>
+      <ProtectedRoute path={"/userDash"}>
+        <UserDash editButtonState={editButtonState} issues={issues} getIssues={getIssues}/>
+      </ProtectedRoute>
+      <ProtectedRoute path={"/createIssue"}>
+        <CreateIssue />
+      </ProtectedRoute>
+      <ProtectedRoute path={"/issueEdit/:id"}>
+        <IssueEdit />
+      </ProtectedRoute>
+    </Router>
+  );
+};
+
+export default App;
+
 const Header = styled.div`
   background-color: black;
   div{
@@ -55,66 +119,3 @@ const Header = styled.div`
     }
   }
 `
-const defaultIssueValues = [
-{
-  id: "",
-  userId: "",
-  title: "",
-  city: "",
-  hoa: "",
-  description: "",
-  photo: [""],
-  upvotes: "",
-  createdAt: "",
-}];
-const editButtonState = false;
-// const loggedIn = true;
-function App() {
-  const loggedIn = useRecoilValue(userState).loggedIn;
-  const [ issues, setIssues ] = useState(defaultIssueValues);
-
-  const getIssues = data => [
-    setIssues(data)
-  ];
-
-  return (
-    <Router>
-      <Header>
-        <div>
-          <h1>Co-Make</h1>
-          <nav>
-            <NavLink style={!loggedIn ? {} : { display: "none" }} to="/login">
-              Login
-            </NavLink>
-            <NavLink style={!loggedIn ? {} : { display: "none" }} to="/register">
-              Register
-            </NavLink>
-            <NavLink style={loggedIn ? {} : { display: "none" }} to="/userDash">
-              Dashboard
-            </NavLink>
-            <NavLink style={loggedIn ? {} : { display: "none" }} to="/createIssue">
-              Post New Issue
-            </NavLink>
-          </nav>
-        </div>
-      </Header>
-      <Route path={"/login"}>
-        <Login />
-      </Route>
-      <Route path={"/register"}>
-        <Register />
-      </Route>
-      <ProtectedRoute path={"/userDash"}>
-        <UserDash editButtonState={editButtonState} issues={issues} getIssues={getIssues}/>
-      </ProtectedRoute>
-      <ProtectedRoute path={"/createIssue"}>
-        <CreateIssue />
-      </ProtectedRoute>
-      <ProtectedRoute path={"/issueEdit/:id"}>
-        <IssueEdit />
-      </ProtectedRoute>
-    </Router>
-  );
-};
-
-export default App;

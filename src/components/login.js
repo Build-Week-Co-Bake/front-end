@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
@@ -9,6 +9,7 @@ import { userState } from "../recoil/atoms";
 function Login(props) {
   const history = useHistory();
   const setUser = useSetRecoilState(userState);
+  const [ credentialError, setCredentialError ] = useState(false)
   const { register, handleSubmit, errors } = useForm();
 
   const onSubmit = (data) => {
@@ -25,7 +26,10 @@ function Login(props) {
         localStorage.setItem("token", res.data.token);
         history.push("/userDash");
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+        setCredentialError(true)
+        console.log(err)
+    });
   };
 
   return (
@@ -51,7 +55,18 @@ function Login(props) {
             pattern: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).{8,16}$/,
           })}
         />
-        {errors.password && <span>This field is required</span>}
+        {errors.password && <span>
+            Your password must be:
+            <br />
+            8-16 characters in length
+            <br />
+            Contain at least one upper case letter
+            <br />
+            Contain at least one lower case letter
+            <br />
+            Contain at least one number
+          </span>}
+        <div className='credentialError' style={credentialError ? {} : { display: "none" }} >It looks like you're email or password are incorrect.</div>
         <input className='submit' type="submit" />
       </form>
     </StyledLogin>
@@ -79,6 +94,9 @@ const StyledLogin = styled.div`
         input.submit{
             width: 30%;
             margin: 2% auto;
+        }
+        div.credentialError{
+            color: red;
         }
     }
 `
