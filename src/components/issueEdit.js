@@ -22,14 +22,14 @@ function IssueEdit(props) {
     const [ issue, setIssue ] = useState([defaultIssue]);
 
     const updateIssue = (data) => {
-        console.log(data)
+        // console.log(data)
     };
 
     useEffect(() => {
         api()
         .get(`/issues/${id}`)
         .then((res) => {
-          console.log('res', res);
+        //   console.log('res', res);
           setIssue(res.data[0])
         })
         .catch((err) => console.log(err));

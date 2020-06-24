@@ -8,7 +8,7 @@ function Register(props) {
   const { register, handleSubmit, errors } = useForm();
   const history = useHistory();
   const onSubmit = (data) => {
-    console.log(data)
+    // console.log(data)
     api()
       .post("api/register", data)
       .then((res) => {

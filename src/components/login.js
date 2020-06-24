@@ -12,7 +12,7 @@ function Login(props) {
   const { register, handleSubmit, errors } = useForm();
 
   const onSubmit = (data) => {
-    console.log('data', data);
+    // console.log('data', data);
     api()
     .post("api/login", data)
     .then((res) => {
