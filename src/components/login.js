@@ -66,8 +66,8 @@ function Login(props) {
             <br />
             Contain at least one number
           </span>}
-        <div className='credentialError' style={credentialError ? {} : { display: "none" }} >It looks like you're email or password are incorrect.</div>
-        <input className='submit' type="submit" />
+        <div className='credentialError' style={credentialError ? {} : { display: "none" }} >It looks like you're email or password is incorrect.</div>
+        <button className='submit' type="submit">Login</button>
       </form>
     </StyledLogin>
   );
@@ -76,10 +76,13 @@ function Login(props) {
 export default Login;
 
 const StyledLogin = styled.div`
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-        margin: 10% auto;
-        width: 40%;
-        padding: 3%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin: 10% auto;
+    width: 40%;
+    padding: 3%;
+        @media(max-width:500px){
+            width: 80%;
+        }
     h2{
         font-size: 2rem;
         margin: 2% 0;
@@ -91,9 +94,14 @@ const StyledLogin = styled.div`
             padding: 2%;
             margin: 2% 0;
         }
-        input.submit{
+        button.submit{
             width: 30%;
             margin: 2% auto;
+            padding: 2%;
+            font-size: 1rem;
+        }
+        button.submit:active{
+            background-color: lightgrey;
         }
         div.credentialError{
             color: red;

@@ -93,12 +93,14 @@ const Header = styled.div`
       
     }
     nav{
-      width: 30%;
+      width: 40%;
       display: flex;
+      justify-content: end;
       flex-direction: row;
 
       @media(max-width:500px){
-            width: 80%;
+          width: 100%;
+          justify-content: center;
         }
       a{
         display: flex;
