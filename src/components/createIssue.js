@@ -95,7 +95,7 @@ const StyledCreateIssue = styled.div`
       margin: 2% 0;
     }
     button.submit{
-      width: 20%;
+      width: 30%;
       margin: 2% auto;
       padding: 2%;
       font-size: 1rem;
