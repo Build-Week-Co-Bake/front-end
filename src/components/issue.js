@@ -55,10 +55,8 @@ function Issue(props) {
         <div className="buttons">
           {vote}
           <button onClick={() => handleUpvote()}>^</button>
-          {props.editButtonState && <button onClick={changeUrl}>Edit</button>}
-          {props.editButtonState && (
-            <button onClick={handleDelete}>Delete</button>
-          )}
+          {!props.editButtonState && <button onClick={changeUrl}>Edit</button>}
+          {!props.editButtonState && (<button onClick={handleDelete}>Delete</button>)}
         </div>
       </div>
       <img key={image} src={image} alt={`issue ${id} photo`} />

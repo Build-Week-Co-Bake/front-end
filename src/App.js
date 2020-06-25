@@ -11,72 +11,28 @@ import IssueEdit from "./components/issueEdit";
 import CreateIssue from "./components/createIssue";
 import "./App.css";
 
-const Header = styled.div`
-  background-color: black;
-  div{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    max-width: 1200px;
-    margin: 0 auto;
-    color: white;
-    @media(max-width:500px){
-      justify-content: center;
-    }
-    h1{
-      font-size: 3rem;
-      padding: 1%;
-      
-    }
-    nav{
-      width: 30%;
-      display: flex;
-      flex-direction: row;
-
-      @media(max-width:500px){
-            width: 80%;
-        }
-      a{
-        display: flex;
-        align-content: center;
-        padding: 10%;
-        text-decoration: none;
-      }
-      a:visited{
-        color: white;
-      }
-      a:link{
-        color: white;
-      }
-      a:hover{
-        color: black;
-        background-color: white;
-      }
-    }
-  }
-`
 const defaultIssueValues = [
-{
-  id: "",
-  userId: "",
-  title: "",
-  city: "",
-  hoa: "",
-  description: "",
-  photo: [""],
-  upvotes: "",
-  createdAt: "",
-}];
-const editButtonState = false;
-// const loggedIn = true;
-function App() {
+  {
+    id: "",
+    userId: "",
+    title: "",
+    city: "",
+    hoa: "",
+    description: "",
+    photo: [""],
+    upvotes: "",
+    createdAt: "",
+  }];
+  const editButtonState = false;
+  // const loggedIn = true;
+  function App() {
   const loggedIn = useRecoilValue(userState).loggedIn;
   const [ issues, setIssues ] = useState(defaultIssueValues);
-
+  
   const getIssues = data => [
     setIssues(data)
   ];
-
+  
   return (
     <Router>
       <Header>
@@ -118,3 +74,50 @@ function App() {
 };
 
 export default App;
+
+const Header = styled.div`
+  background-color: black;
+  div{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    color: white;
+    @media(max-width:500px){
+      justify-content: center;
+    }
+    h1{
+      font-size: 3rem;
+      padding: 1%;
+      
+    }
+    nav{
+      width: 40%;
+      display: flex;
+      justify-content: end;
+      flex-direction: row;
+
+      @media(max-width:500px){
+          width: 100%;
+          justify-content: center;
+        }
+      a{
+        display: flex;
+        align-content: center;
+        padding: 10%;
+        text-decoration: none;
+      }
+      a:visited{
+        color: white;
+      }
+      a:link{
+        color: white;
+      }
+      a:hover{
+        color: black;
+        background-color: white;
+      }
+    }
+  }
+`

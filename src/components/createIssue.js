@@ -67,7 +67,7 @@ function CreateIssue(props) {
           })}
         />
         {errors.photo && <span>Please enter a valid image URL.</span>}
-        <input type="submit" />
+        <button className='submit' type="submit">Create Issue</button>
       </form>
     </StyledCreateIssue>
   );
@@ -80,6 +80,9 @@ const StyledCreateIssue = styled.div`
   margin: 10% auto;
   width: 40%;
   padding: 3%;
+  @media(max-width:500px){
+    width: 80%;
+  }
   h2 {
     font-size: 2rem;
     margin: 2% 0;
@@ -91,9 +94,14 @@ const StyledCreateIssue = styled.div`
       padding: 2%;
       margin: 2% 0;
     }
-    input.submit {
+    button.submit{
       width: 30%;
       margin: 2% auto;
+      padding: 2%;
+      font-size: 1rem;
+      @media(max-width:500px){
+        width: 50%;
+      }
     }
   }
 `;
