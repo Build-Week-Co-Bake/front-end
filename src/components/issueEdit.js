@@ -56,7 +56,7 @@ function IssueEdit(props) {
           ref={register}
         />
         <label>Change Photo:</label>
-        <input name="image" type="url" ref={register} />
+        <input name="image" type="url" ref={register} defaultValue={issue.image}/>
         <button className="submit" type="submit">Update Issue</button>
       </form>
     </StyledIssueEdit>

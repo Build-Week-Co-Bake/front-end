@@ -26,7 +26,12 @@ function UserDash(props) {
         getIssues(res.data.data);
         setEditButtonState(!editButtonState);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        setEditButtonState(!editButtonState);
+        getIssues([])
+        console.log(err)
+      });
+
   }, [issueFilter]);
   return (
     <Cards>
