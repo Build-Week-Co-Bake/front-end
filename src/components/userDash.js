@@ -22,7 +22,7 @@ function UserDash(props) {
     api()
       .get(`${issueFilter}`)
       .then((res) => {
-        //   console.log('Issues from the backend',res.data);
+        console.log(res);
         getIssues(res.data.data);
         setEditButtonState(!editButtonState);
       })
@@ -55,6 +55,7 @@ function UserDash(props) {
         {issues &&
           issues.map((issue) => (
             <Issue
+              setIssueFilter={setIssueFilter}
               key={issue.id}
               issue={issue}
               editButtonState={editButtonState}

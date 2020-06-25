@@ -24,8 +24,9 @@ function Issue(props) {
 
   const handleUpvote = () => {
     api()
-      .put(`/issues/${id}`, { upvotes: upvotes + 1 })
-      .then(() => {
+      .put(`/issues/${id}`, { upvotes: vote + 1 })
+      .then((res) => {
+        console.log(res);
         setVote(vote + 1);
       })
       .catch((err) => console.log(err));
@@ -34,8 +35,11 @@ function Issue(props) {
   const handleDelete = () => {
     api()
       .delete(`/issues/${id}`)
-      .then(() => {
+      .then((res) => {
+        console.log(res);
         props.issues.filter((item) => item.id !== id);
+        props.setIssueFilter("issues");
+        history.push("/userDash");
       })
       .catch((res) => console.log(res));
   };

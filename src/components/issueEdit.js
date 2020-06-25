@@ -23,6 +23,7 @@ function IssueEdit(props) {
   const history = useHistory();
 
   const updateIssue = (data) => {
+    console.log(data);
     api()
       .put(`/issues/${id}`, data)
       .then(() => history.push("/userDash"))
