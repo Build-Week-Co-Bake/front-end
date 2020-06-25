@@ -7,10 +7,10 @@ import { userState } from "../recoil/atoms";
 import styled from "styled-components";
 
 function UserDash(props) {
-  const { editButtonState, issues, getIssues } = props;
+  const { issues, getIssues } = props;
   const { register, handleSubmit } = useForm();
   const [issueFilter, setIssueFilter] = useState("issues");
-  const [userId, setUserId] = useState(`0`);
+  const [editButtonState, setEditButtonState] = useState(true);
   const user = useRecoilValue(userState).user;
   console.log(user);
 
@@ -24,14 +24,25 @@ function UserDash(props) {
       .then((res) => {
         //   console.log('Issues from the backend',res.data);
         getIssues(res.data.data);
+        setEditButtonState(!editButtonState);
       })
       .catch((err) => console.log(err));
   }, [issueFilter]);
   return (
     <Cards>
       <div className="filters">
-        <button onClick={() => setIssueFilter("issues")}>All Issues</button>
-        <button onClick={() => setIssueFilter(`api/users/${userId}:/issues`)}>
+        <button
+          onClick={() => {
+            setIssueFilter("issues");
+          }}
+        >
+          All Issues
+        </button>
+        <button
+          onClick={() => {
+            setIssueFilter(`api/users/${user.id}/issues`);
+          }}
+        >
           Your Issues
         </button>
         <form onSubmit={handleSubmit(onSearch)}>
@@ -47,6 +58,8 @@ function UserDash(props) {
               key={issue.id}
               issue={issue}
               editButtonState={editButtonState}
+              issues={issues}
+              getIssues={getIssues}
             />
           ))}
       </div>

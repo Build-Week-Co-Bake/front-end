@@ -2,15 +2,17 @@ import React from "react";
 import styled from "styled-components";
 import { useForm } from "react-hook-form";
 import { api } from "../utils/api";
+import { useHistory } from "react-router-dom";
 
 function CreateIssue(props) {
   const { register, handleSubmit, errors } = useForm();
+  const history = useHistory();
   const postIssue = (data) => {
     // console.log('CreateIssue data', data);
     api()
       .post("/issues", data)
       .then((res) => {
-        console.log(res);
+        history.push("/userDash");
       })
       .catch((error) => {
         console.log("CreateIssue error", error);
