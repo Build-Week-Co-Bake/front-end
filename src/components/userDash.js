@@ -33,8 +33,8 @@ function UserDash(props) {
     return(
         <Cards>
             <div className='filters'>
-                <button onClick={() => setIssueFilter('issues')}>All Issues</button>
-                <button onClick={() => setIssueFilter(`api/users/${userId}:/issues`)}>Your Issues</button>
+                <button className='filters' onClick={() => setIssueFilter('issues')}>All Issues</button>
+                <button className='filters' onClick={() => setIssueFilter(`api/users/${userId}:/issues`)}>Your Issues</button>
                 <form onSubmit={handleSubmit(onSearch)}>
                     <label>Search for issues by location:</label>
                     <input
@@ -42,7 +42,7 @@ function UserDash(props) {
                         name='search'
                         ref={register}
                     />
-                    <input className='submit' type='submit'/>
+                    <button className='submit' type='submit'>Search</button>
                 </form>
             </div>
             <div className='issues'>
@@ -59,18 +59,30 @@ export default UserDash
 const Cards = styled.div`
     div.filters{
         display: flex;
+        flex-wrap: wrap;
         max-width: 1200px;
         margin: 0 auto;
-        button{
-            margin: 1%;
+
+        @media(max-width:500px){
+            justify-content: center;
+        }
+        button.filters{
+            margin: 2%;
+            width: 20%;
             padding: 1%;
             font-size: 1rem;
+            @media(max-width:500px){
+                width:40%;
+            }
         }
         form{
             display: flex;
             flex-wrap: wrap;
             padding: 1%;
             width: 100%;
+            @media(max-width:500px){
+                width:80%;
+            }
             label{
                 font-size: 1rem;
                 width: 100%;
@@ -80,11 +92,16 @@ const Cards = styled.div`
                 width: 60%;
                 padding: 1%;
                 margin: 1%;
+
+                @media(max-width:500px){
+                    width:100%;
+                }
             }
-            input.submit{
+            button.submit{
                 font-size: 1rem;
                 padding: 1%;
                 width: auto;
+                margin: 1%;
             }
         }
     }
