@@ -10,7 +10,7 @@ function UserDash(props) {
   const { issues, getIssues } = props;
   const { register, handleSubmit } = useForm();
   const [issueFilter, setIssueFilter] = useState("issues");
-  const [editButtonState, setEditButtonState] = useState(true);
+  const [editButtonState, setEditButtonState] = useState(false);
   const user = useRecoilValue(userState).user;
   console.log(user);
 
@@ -48,7 +48,7 @@ function UserDash(props) {
         <form onSubmit={handleSubmit(onSearch)}>
           <label>Search for issues by location:</label>
           <input type="text" name="search" ref={register} />
-          <input className="submit" type="submit" />
+          <button className="submit" type="submit">Search</button>
         </form>
       </div>
       <div className="issues">
@@ -73,12 +73,22 @@ export default UserDash;
 const Cards = styled.div`
   div.filters {
     display: flex;
+    flex-wrap: wrap;
     max-width: 1200px;
     margin: 0 auto;
+
+    @media(max-width:500px){
+      justify-content: center;
+    }
     button {
-      margin: 1%;
+      margin: 3% 1% ;
       padding: 1%;
       font-size: 1rem;
+      width: 20%;
+
+      @media(max-width:500px){
+        width: 40%;
+      }
     }
     form {
       display: flex;
@@ -92,13 +102,17 @@ const Cards = styled.div`
       }
       input {
         width: 60%;
-        padding: 1%;
-        margin: 1%;
-      }
-      input.submit {
+        margin: 3% 0;
         font-size: 1rem;
-        padding: 1%;
-        width: auto;
+      }
+      button.submit{
+          width: 20%;
+          margin: 2% auto;
+          padding: 2%;
+          font-size: 1rem;
+          @media(max-width:500px){
+            width: 30%;
+        }
       }
     }
   }

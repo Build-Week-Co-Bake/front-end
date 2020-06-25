@@ -57,7 +57,7 @@ function IssueEdit(props) {
         />
         <label>Change Photo:</label>
         <input name="image" type="url" ref={register} />
-        <input className="submit" type="submit" />
+        <button className="submit" type="submit">Update Issue</button>
       </form>
     </StyledIssueEdit>
   );
@@ -74,6 +74,9 @@ const StyledIssueEdit = styled.div`
     font-size: 2rem;
     margin: 2% 0;
   }
+  img{
+      width: 60%;
+  }
   form {
     display: flex;
     flex-direction: column;
@@ -81,9 +84,14 @@ const StyledIssueEdit = styled.div`
       padding: 2%;
       margin: 2% 0;
     }
-    input.submit {
-      width: 30%;
-      margin: 2% auto;
+    button.submit{
+        width: 30%;
+        margin: 2% auto;
+        padding: 2%;
+        font-size: 1rem;
+        @media(max-width:500px){
+          width: 50%;
+      }
     }
   }
 `;

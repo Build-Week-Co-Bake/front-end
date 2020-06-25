@@ -92,7 +92,7 @@ const StyledRegister = styled.div`
         font-size: 1rem;
         @media(max-width:500px){
           width: 50%;
-        }
+      }
     }
   }
 `
